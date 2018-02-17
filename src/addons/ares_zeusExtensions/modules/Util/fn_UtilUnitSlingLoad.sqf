@@ -21,8 +21,9 @@ if (_activated && local _logic) then {
         _logic setPosASL _pos;
 
         {
-          _heli setSlingLoad _x;
           [objnull, format["Trying slingload %1 to %2", typeOf _x, typeOf _heli]] call bis_fnc_showCuratorFeedbackMessage;
+          _logic synchronizeObjectsRemove [_x];
+          _heli setSlingLoad _x;
         } foreach (synchronizedObjects _logic);
         _logic synchronizeObjectsRemove (synchronizedObjects _logic);
 

@@ -157,7 +157,8 @@ if (count _assignedGuns > 0) then {
   ["Firing %1x%2 rounds of '%3' at target. ETA %4-%5", count _assignedGuns, _rounds, _ammoName, _etaMin,_etaMax] call Ares_fnc_ShowZeusMessage;
 
   if (_announce > 0) then {
-    {
+    sleep 5;
+    {     
       waituntil { unitReady _x };
     } foreach _assignedGuns;
     [[_side, format ["Shots fired."]], "Ares_CommandChat"] call BIS_fnc_MP;
