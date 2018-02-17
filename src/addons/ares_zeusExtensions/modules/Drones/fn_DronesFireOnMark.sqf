@@ -108,7 +108,10 @@ if (_activated && local _logic) then {
         _attackTime = _uav getVariable ["nextAttackTime", time];
         
         if (time >= _attackTime) then {
-          _target = _uav getVariable ["uav_laser_designation", objNull];
+          _designator = _uav getVariable ["uav_laser_designator", objNull];
+          if (not isNull _designator && alive _designator) then {
+            _target = laserTarget _designator;
+          };
           if (isNull _target && time >= _retargetTime) then {
             _targets = [];
             {
@@ -118,7 +121,7 @@ if (_activated && local _logic) then {
                   if (alive _veh) then {
                     _lt = laserTarget _veh;
                     if (not isNull _lt) then {
-                      _targets pushBackUnique _lt;
+                      _targets pushBackUnique [_lt, _veh];
                     };
                   };
                 } foreach units _x;
@@ -126,11 +129,12 @@ if (_activated && local _logic) then {
             } foreach allGroups;
             if (count _targets > 0) then
             {
-              _targets = _targets apply { [_uav distance _x, _x] };
+              _targets = _targets apply { [_uav distance (_x select 0), _x select 1] };
               _targets sort true;
-              _target = (_targets select 0) select 1;
+              _designator = (_targets select 0) select 1;
 
-              _uav setVariable ["uav_laser_designation", _target];
+              _uav setVariable ["uav_laser_designator", _designator];
+              _target = laserTarget _designator;
             };
             _retargetTime = time + 5;
           };
