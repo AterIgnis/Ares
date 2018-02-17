@@ -1,0 +1,26 @@
+[2015-12-02 12:47:56,569] [INFO]: ==========================================================================
+[2015-12-02 12:47:56,579] [INFO]: WELCOME TO ADDON BUILDER
+[2015-12-02 12:47:56,579] [INFO]: Version: 1.3.13312
+[2015-12-02 12:47:56,581] [INFO]: ==========================================================================
+[2015-12-02 12:47:56,720] [INFO]: Builder starting...
+[2015-12-02 12:47:56,723] [INFO]: Clearing temp folder. [temp=]=C:\Users\AterIgnis\AppData\Local\Temp\ares_zeusextensions
+[2015-12-02 12:47:56,859] [INFO]: Done.
+[2015-12-02 12:47:56,860] [INFO]: Copying to temp...
+[2015-12-02 12:47:57,079] [INFO]: Copy done.
+[2015-12-02 12:47:57,112] [INFO]: Deleting empty folders in "C:\Users\AterIgnis\AppData\Local\Temp\ares_zeusextensions"
+[2015-12-02 12:47:57,122] [INFO]: Done.
+[2015-12-02 12:47:57,123] [INFO]: Binarizing texture headers
+2015-12-02 12:47:57,240 [INFO] 6: AddonBuilder.Tasks.ProcessBuildTask.ProcessOnOutputDataReceived - Creating texture headers file...
+2015-12-02 12:47:57,241 [WARN] 5: AddonBuilder.Tasks.ProcessBuildTask.process_ErrorDataReceived - BINARIZE rev.133012
+2015-12-02 12:47:57,241 [WARN] 5: AddonBuilder.Tasks.ProcessBuildTask.process_ErrorDataReceived - H:\Games\SteamLibrary\steamapps\common\Arma 3 Tools\Binarize\binarize.exe -texheaders -maxProcesses=8 -silent -exclude="H:\Games\SteamLibrary\steamapps\common\Arma 3 Tools\FileBank\exclude.lst" "C:\Users\AterIgnis\AppData\Local\Temp\ares_zeusextensions" "C:\Users\AterIgnis\AppData\Local\Temp\ares_zeusextensions" 
+2015-12-02 12:47:57,241 [INFO] 6: AddonBuilder.Tasks.ProcessBuildTask.ProcessOnOutputDataReceived - 7 texture headers saved to file "C:\Users\AterIgnis\AppData\Local\Temp\ares_zeusextensions\texHeaders.bin"
+2015-12-02 12:47:57,247 [WARN] 7: AddonBuilder.Tasks.ProcessBuildTask.process_ErrorDataReceived - 
+2015-12-02 12:47:57,247 [INFO] 6: AddonBuilder.Tasks.ProcessBuildTask.ProcessOnOutputDataReceived - 
+[2015-12-02 12:47:57,250] [INFO]: Done.
+[2015-12-02 12:47:57,250] [INFO]: Packing "C:\Users\AterIgnis\AppData\Local\Temp\ares_zeusextensions"...
+2015-12-02 12:47:57,522 [WARN] 8: AddonBuilder.Tasks.ProcessBuildTask.process_ErrorDataReceived - 
+2015-12-02 12:47:57,522 [INFO] 5: AddonBuilder.Tasks.ProcessBuildTask.ProcessOnOutputDataReceived - 
+[2015-12-02 12:47:57,523] [INFO]: Done.
+[2015-12-02 12:47:57,524] [INFO]: Copying PBO. [source]=C:\Users\AterIgnis\AppData\Local\Temp\ares_zeusExtensions.pbo, [dest]=H:\Games\Arma 3\Ares-master\bin\@Ares\addons\ares_zeusExtensions.pbo
+[2015-12-02 12:47:57,526] [INFO]: Done.
+[2015-12-02 12:47:57,526] [INFO]: Build Successful
