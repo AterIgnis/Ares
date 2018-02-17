@@ -91,6 +91,7 @@ if (_activated && local _logic) then {
           { _uav lockCameraTo [objNull, _x]; } foreach allTurrets [_uav, false];
           _uav doTarget objNull;
           _uav doWatch objNull;
+          _shouldLase = false;
         };
 
         _shouldChange = _shouldLase;
