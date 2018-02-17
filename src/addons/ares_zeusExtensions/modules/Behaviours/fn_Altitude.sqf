@@ -29,19 +29,6 @@ if (alive _unit) then
 		};
 	};
 	_unit setSpeedMode _speed;
-
-	_wpIdx = currentWaypoint group _unit;
-	_wps = waypoints group _unit;
-	if (_wpIdx >= count _wps) then {
-		_tempPos = getPosATL _unit;
-		_wpPos = [_tempPos select 0, _tempPos select 1, _altitude];
-	} else {
-		_wp = _wps select _wpIdx;
-		_tempPos = getWPPos _wp;
-		_wpPos = [_tempPos select 0, _tempPos select 1, _altitude];
-		_wp setWPPos _wpPos;
-	};
-	_unit move _wpPos;
 	_unit flyInHeight _altitude;
 };
 
