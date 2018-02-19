@@ -109,11 +109,9 @@ if (_activated && local _logic) then {
         
         if (time >= _attackTime) then {
           _designator = _uav getVariable ["uav_laser_designator", objNull];
+          _target = objNull;
           if (not isNull _designator && alive _designator) then {
             _target = laserTarget _designator;
-          }
-          else {
-            _target = objNull;
           };
           if (isNull _target && time >= _retargetTime) then {
             _targets = [];
