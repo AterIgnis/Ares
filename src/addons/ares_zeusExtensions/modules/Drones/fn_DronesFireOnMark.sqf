@@ -13,7 +13,7 @@ if (isNil "Ares_Stop_Drone_Fire_At_Mark") then
     _uav doWatch objNull;
 
     _i = 0;
-    while { _i < count waypoints _uav } do {
+    while { _i < count waypoints (group _uav) } do {
       if (waypointName [group _uav, _i] == "lase") then {
         deleteWaypoint [group _uav, _i];
       }
@@ -149,7 +149,9 @@ if (_activated && local _logic) then {
             _uav doFire _target;
 
             _movepos = position _target;
-            _uttNorm = (position _uav) vectorFromTo (position _target);
+            _uttNorm = (position _target) vectorDiff (position _uav);
+            _uttNorm set [2, 0];
+            _uttNorm = vectorNormalized _uttNorm;
             _dir = vectorDir _uav;
             _dist = _uav distance2D _target;
             _reqDir = (_dir vectorDotProduct _uttNorm) > 0;
@@ -162,6 +164,7 @@ if (_activated && local _logic) then {
               else {
                 _movepos = _movePos vectorAdd (_uttNorm vectorMultiply -(_radius + _minRadius));
               };
+              _movepos set [2, (getPosATL _uav) select 2];
             };
             
             _wp = [group _uav, 0];
