@@ -69,3 +69,10 @@ class Ares_Module_Behaviour_Altitude : Ares_Behaviours_Module_Base
 	displayName = "Set Altitude";
 	function = "Ares_fnc_Altitude";
 };
+
+class Ares_Module_Behaviour_AI_Toggle : Ares_Behaviours_Module_Base
+{
+	scopeCurator = 2;
+	displayName = "Set AI modes";
+	function = "Ares_fnc_ChangeAI";
+};

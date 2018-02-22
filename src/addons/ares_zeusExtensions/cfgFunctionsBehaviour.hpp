@@ -11,4 +11,5 @@ class BehaviourModules
 	class UnGarrison {};
 	class Disembark {};
 	class Altitude {};
+	class ChangeAI {};
 };

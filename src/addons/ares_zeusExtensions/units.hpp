@@ -44,6 +44,7 @@ units[] =
 	// "Ares_Module_Behaviour_Land_Helicopter",
 	"Ares_Module_Behaviour_Disembark",
 	"Ares_Module_Behaviour_Altitude",
+	"Ares_Module_Behaviour_AI_Toggle",
 	"Ares_Module_Util_SetComponentDamage",
 	"Ares_Module_Util_UnitSlingLoad",
 	"Ares_Module_Util_ConfigurePylons",
