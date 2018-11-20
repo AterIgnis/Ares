@@ -4,8 +4,6 @@ _scripts = [
 		"Arsenal_AddFullArsenal",
 		"Arsenal_CopyToClipboard",
 		"Arsenal_PasteFromClipboard",
-		"Behaviour_ArtilleryFire",
-		"Behaviour_ArtilleryFireMission",
 		"Equipment_RemoveWeaponOptics",
 		"SaveLoad_CreateMissionSQF",
 		"Util_ChangePlayerSides",
@@ -39,19 +37,18 @@ if (isNil "Ares_FireArtilleryFunction") then {
 
 		_artilleryUnit commandArtilleryFire [_targetPos, _ammoType, _roundsToFire];
 	};
-	publicVariable "Ares_FireArtilleryFunction";
 };
 if (isNil "Ares_CommandChat") then {
 	Ares_CommandChat = {
 		_side = _this select 0;
-		_text = _this select 1;
+		_sign = _this select 1;
+		_text = _this select 2;
 		if (alive player && side player == _side) then {
-			[_side, "HQ"] commandChat format["%1",_text];
+			[_side, _sign] commandChat format["%1",_text];
 		} else {
 		    if ([player] call Ares_fnc_IsZeus) then {
-		        systemChat format["%1: %2",_side, _text];
+		        systemChat format["%1 (%2): %3",_side, _sign, _text];
 		    };
 		};
 	};
-	publicVariable "Ares_CommandChat";
 };

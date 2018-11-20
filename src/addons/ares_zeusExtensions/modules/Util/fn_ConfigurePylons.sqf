@@ -8,7 +8,6 @@ if (isNil "Ares_Set_Unit_Pylons") then
     _args = _this select 1;
     _unit setPylonLoadOut _args;
   };
-  publicVariable "Ares_Set_Unit_Pylons";
 };
 
 _logic = _this select 0;
@@ -81,7 +80,7 @@ if (_activated && local _logic) then {
         _opts = (_values select _forEachIndex);
         if (_idx >= 0 && _idx < count _opts) then {
           _mag = _opts select _idx;
-          [[_unit, [_x, _mag, true, _pylonPathsReal select _forEachIndex]], "Ares_Set_Unit_Pylons", _unit] call BIS_fnc_MP;
+          [[_unit, [_x, _mag, true, _pylonPathsReal select _forEachIndex]], Ares_Set_Unit_Pylons] remoteExec ["call", _unit];
         };
       } foreach _pylonsReal;
     };

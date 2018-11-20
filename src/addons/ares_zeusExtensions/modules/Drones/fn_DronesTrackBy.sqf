@@ -66,6 +66,7 @@ if (_activated && local _logic) then {
         };
 
         if (not isNull _target) then {
+          _target = vehicle _target;
           _uav doWatch _target;
           _uav doTarget _target;
           { _uav lockCameraTo [aimpos _target, _x]; } foreach allTurrets [_uav, false];

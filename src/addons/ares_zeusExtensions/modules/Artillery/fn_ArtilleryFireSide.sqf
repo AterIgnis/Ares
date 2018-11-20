@@ -124,6 +124,7 @@ _pickModeResult = [
 if (count _pickModeResult == 0) exitWith { ["Fire mission aborted."] call Ares_fnc_ShowZeusMessage; };
 
 _option = _artOptions select (_pickModeResult select 0);
+_groupId = _option select 0;
 _ammo = _option select 1;
 _units = _option select 3;
 
@@ -142,18 +143,19 @@ _assignedGuns = [];
     if ((_etaMin == -1) || (_eta<_etaMin)) then { _etaMin = _eta; };
     if ((_etaMax == -1) || (_eta>_etaMax)) then { _etaMax = _eta; };
 
-    [[_x, _target, _ammo, _rounds], "Ares_FireArtilleryFunction", _x] call BIS_fnc_MP;
+    [[_x, _target, _ammo, _rounds], Ares_FireArtilleryFunction] remoteExec ["call", _x];
     _assignedGuns pushBack _x;
   };
 } forEach _units;
 
 if (count _assignedGuns > 0) then {
+  _ammoName = getText(configfile >> "CfgMagazines" >> _ammo >> "displayName");
+
   if (_announce > 0) then {
-    _text = format ["Commencing firing %1 rounds at target. ETA %2-%3 seconds.",_rounds,_etaMin,_etaMax];
-    [[_side, _text], "Ares_CommandChat"] call BIS_fnc_MP;
+    _text = format ["Commencing firing %1 rounds %2 at target. ETA %3-%4 seconds.",(count _assignedGuns) * _rounds, _ammoName, _etaMin, _etaMax];
+    [[_side, _groupId, _text], Ares_CommandChat] remoteExec ["call", 0];
   };
 
-  _ammoName = getText(configfile >> "CfgMagazines" >> _ammo >> "displayName");
   ["Firing %1x%2 rounds of '%3' at target. ETA %4-%5", count _assignedGuns, _rounds, _ammoName, _etaMin,_etaMax] call Ares_fnc_ShowZeusMessage;
 
   if (_announce > 0) then {
@@ -161,6 +163,6 @@ if (count _assignedGuns > 0) then {
     {     
       waituntil { unitReady _x };
     } foreach _assignedGuns;
-    [[_side, format ["Shots fired."]], "Ares_CommandChat"] call BIS_fnc_MP;
+    [[_side, _groupId, format ["Shots fired."]], Ares_CommandChat] remoteExec ["call", 0];
   }
 };

@@ -131,13 +131,15 @@ _side = sideUnknown;
 
     if (_side isEqualTo sideUnknown) then { _side = side _x; };
 
-    [[_x, _target, _ammo, _rounds], "Ares_FireArtilleryFunction", _x] call BIS_fnc_MP;
+    [[_x, _target, _ammo, _rounds], Ares_FireArtilleryFunction] remoteExec ["call", _x];
     _assignedGuns pushBack _x;
   };
 } forEach _units;
 
 if (count _assignedGuns > 0) then {
-  if (_announce > 0 && !(_side isEqualTo sideUnknown)) then { [[_side, format ["Commencing firing %1 rounds at target. ETA %2-%3 seconds.",_rounds,_etaMin,_etaMax]], "Ares_CommandChat"] call BIS_fnc_MP; };
+  if (_announce > 0 && !(_side isEqualTo sideUnknown)) then {
+    [[_side, "HQ", format ["Commencing firing %1 rounds at target. ETA %2-%3 seconds.",_rounds,_etaMin,_etaMax]], Ares_CommandChat] remoteExec ["call", 0];
+  };
 
   _ammoName = getText(configfile >> "CfgMagazines" >> _ammo >> "displayName");
   ["Firing %1x%2 rounds of '%3' at target. ETA %4-%5", count _assignedGuns, _rounds, _ammoName, _etaMin,_etaMax] call Ares_fnc_ShowZeusMessage;
@@ -146,7 +148,8 @@ if (count _assignedGuns > 0) then {
     {
       waituntil { unitReady _x };
     } foreach _assignedGuns;
-    [[_side, format ["Shots fired."]], "Ares_CommandChat"] call BIS_fnc_MP;
+
+    [[_side, "HQ", format ["Shots fired."]], Ares_CommandChat] remoteExec ["call", 0];
   }
 };
 

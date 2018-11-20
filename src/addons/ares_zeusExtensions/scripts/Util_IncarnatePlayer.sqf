@@ -58,7 +58,7 @@
 			{
 				_playerToIncarnate = _playerList select (_dialogResult select 0);
 				publicVariable "Ares_oneshotCodeBlockIncarn";
-				[[_playerToIncarnate,_unitUnderCursor], "Ares_oneshotCodeBlockIncarn", _playerToIncarnate] call BIS_fnc_MP;
+				[[_playerToIncarnate,_unitUnderCursor], Ares_oneshotCodeBlockIncarn] remoteExec ["call", _playerToIncarnate];
 
 				["Incarnation started."] call Ares_fnc_ShowZeusMessage;
 			};

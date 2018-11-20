@@ -4,7 +4,7 @@ class CfgPatches
 	{
 		weapons[] = {};
 		requiredVersion = 0.1;
-		author[] = { "Anton Struyk" };
+		author = "Anton Struyk";
 		authorUrl = "https://github.com/astruyk/";
 		version = 1.8.0;
 		versionStr = "1.8.0";

@@ -9,7 +9,6 @@ if (isNil "Ares_Set_Unit_Damage_Function") then
 		_dmg  = _this select 2;
 		_unit setHitPointDamage [_comp, _dmg];
 	};
-	publicVariable "Ares_Set_Unit_Damage_Function";
 };
 
 _unitToDamage = [_logic] call Ares_fnc_GetUnitUnderCursor;
@@ -41,7 +40,7 @@ if (alive _unitToDamage) then
 
 	[objNull, format["Setting %1's %2 damage to %3%4", typeOf _unitToDamage, _comp, _dmg*100,"%"]] call bis_fnc_showCuratorFeedbackMessage;
 
-	[[_unitToDamage, _comp, _dmg], "Ares_Set_Unit_Damage_Function", _unitToDamage] call BIS_fnc_MP;
+	[[_unitToDamage, _comp, _dmg], Ares_Set_Unit_Damage_Function] remoteExec ["call", _unitToDamage];
 
 };
 

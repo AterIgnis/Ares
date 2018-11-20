@@ -4,6 +4,22 @@
 _logic = _this select 0;
 _activated = _this select 2;
 
+if (isNil "Ares_disableDroneInteraction") then
+{
+  Ares_disableDroneInteraction =
+  {
+    _uav = _this select 0;
+    _logic = _this select 1;
+    while { not isNull _uav && alive _uav && not isNull _logic } do {
+      player disableUAVConnectability [_uav, true];
+      sleep 5;
+    };
+    if (not isNull _uav) then {
+      player enableUAVConnectability [_uav, true];
+    };
+  };
+};
+
 if (isNil "Ares_Stop_Drone_Fire_At_Mark") then
 {
   Ares_Stop_Drone_Fire_At_Mark =
@@ -22,7 +38,6 @@ if (isNil "Ares_Stop_Drone_Fire_At_Mark") then
       };
     };
   };
-  publicVariable "Ares_Stop_Drone_Fire_At_Mark";
 };
 
 if (_activated && local _logic) then {
@@ -73,6 +88,8 @@ if (_activated && local _logic) then {
       _uav = _this select 1;
       _weap = _this select 2;
       _freq = _this select 3;
+
+      [[_uav, _logic], Ares_disableDroneInteraction] remoteExec ["spawn", 0, _logic];
 
       _uav setVariable ["uav_laser_designation_module", _logic];
       if (_freq == 2) then {
@@ -164,7 +181,7 @@ if (_activated && local _logic) then {
               else {
                 _movepos = _movePos vectorAdd (_uttNorm vectorMultiply -(_radius + _minRadius));
               };
-              _movepos set [2, (getPosATL _uav) select 2];
+              _movepos set [2, (getTerrainHeightASL _movepos) + 100];
             };
             
             _wp = [group _uav, 0];
@@ -175,10 +192,10 @@ if (_activated && local _logic) then {
             } foreach waypoints (group _uav);
 
             if (waypointName _wp != "lase") then {
-              _wp = (group _uav) addWaypoint [_movepos, 0, currentWaypoint group _uav, "lase"];
+              _wp = (group _uav) addWaypoint [_movepos, -1, currentWaypoint group _uav, "lase"];
             }
             else {
-              _wp setWaypointPosition [_movepos, 0];
+              _wp setWaypointPosition [_movepos, -1];
             };
             if ((_wp select 1) != (currentWaypoint (group _uav))) then {
               (group _uav) setCurrentWaypoint _wp;
