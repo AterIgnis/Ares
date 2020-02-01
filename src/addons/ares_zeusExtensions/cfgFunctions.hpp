@@ -32,6 +32,8 @@ class Ares // This bit will be prefixed when actually calling the function (e.g.
 		class CreateLogic;
 		class GenerateArsenalBlacklist;
 		class GenerateArsenalDataList;
+		class GetAmmoSensors;
+		class GetAmmoSensorsMapped;
 		class GetArrayDataFromUser;
 		class GetFarthest;
 		class GetGroupUnderCursor;

@@ -131,8 +131,7 @@ _titleVariableIdentifier = format ["Ares_ChooseDialog_DefaultValues_%1", [_title
 	_choiceName = _x select 0;
 	_choices = _x select 1;
 	_defaultChoice = 0;
-	if (count _x > 2) then
-	{
+	if (count _x > 2) then {
 		_defaultChoice = _x select 2;
 	};
 	

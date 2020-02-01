@@ -90,6 +90,13 @@ _options = [];
   _batteryName = _battery getVariable ["Name", name _battery];
   _vehicleName = getText(configfile >> "CfgVehicles" >> _vehicleType >> "displayName");
   _ammoName = getText(configfile >> "CfgMagazines" >> _ammo >> "displayName");
+
+  _sensors = [_ammo] call Ares_fnc_GetAmmoSensorsMapped;
+  if (count _sensors > 0) then {
+    _sensors = _sensors arrayIntersect _sensors;
+    _ammoName = format ["%1 <%2>", _ammoName, _sensors joinString ","];
+  };
+
   _ammoCounts = _x select 2;
 
   _name = format ["%1: %2 x%3 : %4 %5",_batteryName,_vehicleName,count _units,_ammoName,_ammoCounts];

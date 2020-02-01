@@ -46,8 +46,14 @@ if (_activated && local _logic) then {
             }
             else {
               _magname = getText (configFile >> "CfgMagazines" >> _mag >> "displayName");
+              if (isNil "_magname") then { _magname = _mag; };
+
+              _sensors = [_mag] call Ares_fnc_GetAmmoSensorsMapped;
+              if (count _sensors > 0) then {
+                _sensors = _sensors arrayIntersect _sensors;
+                _magname = format ["%1 <%2>", _magname, _sensors joinString ","];
+              };
             };
-            if (isNil "_magname") then { _magname = _mag; };
 
             _option pushBack _magname;
             _value pushBack _mag;
