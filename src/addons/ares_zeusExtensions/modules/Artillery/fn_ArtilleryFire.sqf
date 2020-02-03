@@ -93,8 +93,7 @@ _options = [];
 
   _sensors = [_ammo] call Ares_fnc_GetAmmoSensorsMapped;
   if (count _sensors > 0) then {
-    _sensors = _sensors arrayIntersect _sensors;
-    _ammoName = format ["%1 <%2>", _ammoName, _sensors joinString ","];
+    _ammoName = format ["%1 <%2>", _ammoName, (_sensors arrayIntersect _sensors) joinString ","];
   };
 
   _ammoCounts = _x select 2;

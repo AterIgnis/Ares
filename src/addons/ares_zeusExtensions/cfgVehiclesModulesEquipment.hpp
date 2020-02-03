@@ -1,3 +1,10 @@
+class Ares_Module_Equipment_ConfigurePylons : Ares_Equipment_Module_Base
+{
+	scopeCurator = 2;
+	displayName = "Configure Pylons";
+	function = "Ares_fnc_EquipmentConfigurePylons";
+};
+
 class Ares_Module_Equipment_Nvgs : Ares_Equipment_Module_Base
 {
 	scopeCurator = 2;
@@ -19,3 +26,9 @@ class Ares_Module_Equipment_Lights : Ares_Equipment_Module_Base
 	function = "Ares_fnc_EquipmentLights";
 };
 
+class Ares_Module_Equipment_SetAmmoPercent : Ares_Equipment_Module_Base
+{
+	scopeCurator = 2;
+	displayName = "Set Ammo Percent";
+	function = "Ares_fnc_EquipmentSetAmmoPercent";
+};

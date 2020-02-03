@@ -6,19 +6,9 @@ _scripts = [
 		"Arsenal_PasteFromClipboard",
 		"Equipment_RemoveWeaponOptics",
 		"SaveLoad_CreateMissionSQF",
-		"Util_ChangePlayerSides",
-		"Util_DisableDebugLog",
-		"Util_DisableSimulation",
-		"Util_EnableDebugLog",
-		"Util_EnableSimulation",
-		"Util_ExecuteCodeAll",
-		"Util_ExecuteCodeLocal",
-		"Util_ExecuteCodeServer",
 		"Util_MakeZeusInvisible",
 		"Util_MakeZeusVisible",
-		"Util_RemoveAllActions",
-		"Util_IncarnatePlayer",
-		"Util_UninjurePlayer"
+		"Util_RemoveAllActions"
 	];
 {
 	call compile preprocessFileLineNumbers ("\ares_zeusExtensions\scripts\" + _x + ".sqf");
@@ -35,7 +25,7 @@ if (isNil "Ares_FireArtilleryFunction") then {
 
 		enableEngineArtillery true;
 
-		_artilleryUnit commandArtilleryFire [_targetPos, _ammoType, _roundsToFire];
+		_artilleryUnit doArtilleryFire [_targetPos, _ammoType, _roundsToFire];
 	};
 };
 if (isNil "Ares_CommandChat") then {

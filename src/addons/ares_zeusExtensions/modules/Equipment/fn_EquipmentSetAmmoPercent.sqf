@@ -5,7 +5,7 @@ if (isNil "Ares_Set_Unit_Ammo_Function") then
 	Ares_Set_Unit_Ammo_Function =
 	{
 		_unit = _this select 0;
-		_ammo  = _this select 1;
+		_ammo = _this select 1;
 		_unit setVehicleAmmoDef _ammo;
 	};
 };
